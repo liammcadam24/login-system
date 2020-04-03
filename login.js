@@ -21,10 +21,12 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Send users who connect to the login page
 app.get('/', function (request, response) {
     response.sendFile(path.join(__dirname + '/login.html'));
 });
 
+// User is logging in
 app.post('/auth', function (request, response) {
     var username = request.body.username;
     var password = request.body.password;
@@ -46,6 +48,7 @@ app.post('/auth', function (request, response) {
     }
 });
 
+// Register a new user
 app.post('/reg', function (req, response) {
     var username = req.body.username;
     var password = req.body.password;
@@ -75,6 +78,7 @@ app.post('/reg', function (req, response) {
     });
 });
 
+// Sends user the homepage if login is successful
 app.get('/home', function (request, response) {
     if (request.session.loggedin) {
         response.send(`Successfully logged in as: ${request.session.username}`);
