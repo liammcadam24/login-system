@@ -59,7 +59,7 @@ app.post('/reg', function (req, response) {
     - Password encryption 
     */
 
-    //Password validation
+    //Basic password validation (to be updated)
     if (password.length < 6) {
         response.send('Password must be greater than 6 characters.');
         response.end();
